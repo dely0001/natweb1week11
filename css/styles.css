@@ -74,4 +74,87 @@ article div {
     font-weight: bold;
     background-color: gainsboro;
     border: 2px solid grey;
+
+    /* you can add flexbox inside of grid or vice versa */
+
+    display: flex; 
+    justify-content: center;
+    align-items: center;
 }
+
+/* **************************************
+            Grid styles
+************************************** */
+
+section.one article {
+    display: grid;
+
+    /* tells grib number of columns 
+    fr = fraction*/
+    grid-template-columns: 200px 1fr 1fr;
+
+    grid-template-rows: 120px 120px;
+
+}
+
+section.two article {
+    display: grid;
+
+    /* explicit grid = defined 
+    implicit grid = what automatically happens based on browser*/
+
+    grid-template-columns: repeat(4, 1fr);
+
+    /* for rows they can automatically take on a property */
+    grid-auto-rows: 120px;
+
+    /* makes grid fill empty spaces when an element is too large */
+    grid-auto-flow: dense;
+}
+
+section.two div:nth-child(1) {
+    /* you can tell a cell to start and end at a row or column */
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+section.two div:nth-child(2) {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+section.two div:nth-child(6) {
+    grid-column-start: 1;
+
+    /* you can use span to tell it to stetch across a specific number of columns */
+    grid-column-end: span 4;
+}
+
+section.three article {
+    display: grid;
+
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-auto-rows: 120px;
+    grid-auto-flow: dense;
+
+    /* spaces betweens rows and columns */
+    gap: 1em 1em;
+}
+
+section.three div:nth-child(2) {
+    order:1;
+}
+
+section.three div:nth-child(5) {
+    grid-area: 2 / 1 / span 2 / span 2;
+    /* this is equivalent to 
+    grid-column-start: 2 
+    grid-column-end: span 2 
+    grid-row-start: 1
+    grid-row-end: span 2 */
+}
+
